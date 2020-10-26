@@ -66,7 +66,8 @@ Plug 'https://gitee.com/mirrors_trending/coc.nvim.git'
 " ----------- 批量注释 ---------------
 Plug 'scrooloose/nerdcommenter'
 " ---------------- 快捷代码块 --------------
-" 支持代码片段功能
+" 支持代码片段功能, coc.nvim 功能更强，所以注释
+" 如果coc.nvim，可以使用该插件
 "Plug 'SirVer/ultisnips'
 " " 常用的代码片段
 Plug 'honza/vim-snippets'
