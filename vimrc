@@ -111,6 +111,10 @@ Plug 'wakatime/vim-wakatime'
 " Plug 'jiftle/vim-jiftle-evernote-sync'
 
 " " =================== 测试区 ======================
+" 类似Emacs的老板键，不好用
+" Plug 'liuchengxu/vim-which-key'
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'https://hub.fastgit.org/Yggdroot/LeaderF.git', { 'do': './install.sh' }
 
 " Plug 'godlygeek/tabular'
 " 
@@ -374,6 +378,26 @@ map <F5> :call CompileRunGcc()<CR>
 map <F6> :MRU<CR>
 " Markdown 预览
 map <F7> :MarkdownPreview<CR>
+
+if has('mac')
+    if has('nvim')
+        colorscheme space_vim_theme
+        set bg=light
+    else
+        set termguicolors
+        if &term =~# '^screen'
+            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        endif
+        colorscheme space_vim_theme
+        set bg=light
+    endif
+ 
+endif
+
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 set bg=light
 colo space_vim_theme
