@@ -1,7 +1,6 @@
 " gvim或MacVim字体设置
 set guifont=DroidSansMono\ Nerd\ Font\ Mono\ 10
 
-
 " -------------------- 插件声明 ------------
 call plug#begin('~/.vim/plugged')
 
@@ -50,6 +49,16 @@ Plug 'ryanoasis/vim-devicons'
 " 全局搜索某个单词，ubuntu需要在机器上安装`apt-get install ack-grep
 Plug 'mileszs/ack.vim'
 
+" ------------- 全局搜索 :Leaderf file --------------
+" ----------- deepin V20 ，linux下，运行插件报错，禁用 -------------
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+if has('nvim')
+    " Plug 'https://hub.fastgit.org/Yggdroot/LeaderF.git', { 'do': './install.sh' }
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    " popup mode
+    let g:Lf_WindowPosition = 'popup'
+endif
+
 " ==================== 主题配色 ====================
 Plug 'morhetz/gruvbox'
 Plug 'liuchengxu/space-vim-theme'
@@ -80,7 +89,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 
 " ====================== TypeScript 开发支持 ======================
-" 支持TypeScript
+" 支持TypeScript，语法高亮
 Plug 'leafgarland/typescript-vim'
 
 
@@ -114,7 +123,7 @@ Plug 'wakatime/vim-wakatime'
 " 类似Emacs的老板键，不好用
 " Plug 'liuchengxu/vim-which-key'
 " Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'https://hub.fastgit.org/Yggdroot/LeaderF.git', { 'do': './install.sh' }
+
 
 " Plug 'godlygeek/tabular'
 " 
@@ -198,7 +207,7 @@ let g:vim_markdown_folding_disabled = 1
 
 
 let g:UltiSnipsUsePythonVersion=3
-" let g:coc_disable_startup_warning = 1
+let g:coc_disable_startup_warning = 1
 
 
 " colorscheme morning
@@ -395,9 +404,6 @@ if has('mac')
  
 endif
 
-" popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 set bg=light
 colo space_vim_theme

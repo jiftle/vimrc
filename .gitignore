@@ -1,1 +1,4 @@
 *.swp
+*.lock
+
+node_modules
