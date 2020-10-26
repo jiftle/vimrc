@@ -52,11 +52,17 @@ Plug 'mileszs/ack.vim'
 " ------------- 全局搜索 :Leaderf file --------------
 " ----------- deepin V20 ，linux下，运行插件报错，禁用 -------------
 " Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-if has('nvim')
-    " Plug 'https://hub.fastgit.org/Yggdroot/LeaderF.git', { 'do': './install.sh' }
+if has('mac')
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     " popup mode
     let g:Lf_WindowPosition = 'popup'
+else
+    if has('nvim')
+        " Plug 'https://hub.fastgit.org/Yggdroot/LeaderF.git', { 'do': './install.sh' }
+        Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+        " popup mode
+        let g:Lf_WindowPosition = 'popup'
+    endif
 endif
 
 " ==================== 主题配色 ====================
