@@ -1,0 +1,23 @@
+{
+    "java.enabled": true,
+    "java.home":"/usr/lib/jvm/java-11-openjdk-amd64",
+    "java.configuration.runtimes": [
+        {
+            "default": true,
+            "name": "openjdk-11-jdk",
+            "path": "/usr/lib/jvm/java-11-openjdk-amd64"
+        }
+    ],
+    "languageserver": {
+        "go": {
+            "command": "gopls",
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "trace.server": "verbose"
+        }
+    }
+}
