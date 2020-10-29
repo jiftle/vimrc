@@ -191,6 +191,8 @@ func! CompileRunGcc()
     elseif &filetype == 'mkd'
         exec "!~/.vim/markdown.pl % > %.html &"
         exec "!firefox %.html &"
+	elseif &filetype == 'typescript'
+		exec "!tsc %"
 	endif
 endfunc
 
@@ -394,6 +396,7 @@ map <F6> :MRU<CR>
 " Markdown 预览
 map <F7> :MarkdownPreview<CR>
 
+
 if has('mac')
     if has('nvim')
         colorscheme space_vim_theme
@@ -410,7 +413,23 @@ if has('mac')
  
 endif
 
+" ------------- 编译并执行当前文件
+function! Setup_ExecNDisplay()
+    " 保存文件
+  execute "w"
+  execute "silent ! rm %:p:r.js"
+  execute "silent ! tsc %:p"
+  execute "silent ! node %:p:r.js 2>&1 | tee tmp.out"
+  execute "split tmp.out"
+  " execute "redraw!"
+  " set autoread
+endfunction
 
-set bg=light
+:nmap <F8> :call Setup_ExecNDisplay()<CR>
+
+" set bg=light
+set bg=dark
 colo space_vim_theme
 " colo gruvbox
+
+" colo default
