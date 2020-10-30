@@ -129,7 +129,9 @@ Plug 'wakatime/vim-wakatime'
 " 类似Emacs的老板键，不好用
 " Plug 'liuchengxu/vim-which-key'
 " Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-
+Plug 'mhinz/vim-startify'
+" Buffer切换插件，类似IDE的标签页
+Plug 'bagrat/vim-buffet'
 
 " Plug 'godlygeek/tabular'
 " 
@@ -432,4 +434,20 @@ set bg=dark
 colo space_vim_theme
 " colo gruvbox
 
+" -------------------- Buffer切换插件 'bagrat/vim-buffet' ----------------
 " colo default
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+
+let mapleader = ","
+nmap <leader>1 <Plug>BuffetSwitch(1)
+nmap <leader>2 <Plug>BuffetSwitch(2)
+nmap <leader>3 <Plug>BuffetSwitch(3)
+nmap <leader>4 <Plug>BuffetSwitch(4)
+nmap <leader>5 <Plug>BuffetSwitch(5)
+nmap <leader>6 <Plug>BuffetSwitch(6)
+nmap <leader>7 <Plug>BuffetSwitch(7)
+nmap <leader>8 <Plug>BuffetSwitch(8)
+nmap <leader>9 <Plug>BuffetSwitch(9)
+nmap <leader>0 <Plug>BuffetSwitch(10)
+
