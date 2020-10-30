@@ -133,6 +133,8 @@ Plug 'mhinz/vim-startify'
 " Buffer切换插件，类似IDE的标签页
 Plug 'bagrat/vim-buffet'
 
+Plug 't9md/vim-choosewin'
+
 " Plug 'godlygeek/tabular'
 " 
 " " 提供类似TurbC的菜单栏
@@ -398,6 +400,8 @@ map <F6> :MRU<CR>
 " Markdown 预览
 map <F7> :MarkdownPreview<CR>
 
+map <F7> :MarkdownPreview<CR>
+
 
 if has('mac')
     if has('nvim')
@@ -439,7 +443,8 @@ colo space_vim_theme
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
 
-let mapleader = ","
+" 前缀键
+let g:mapleader = ","
 nmap <leader>1 <Plug>BuffetSwitch(1)
 nmap <leader>2 <Plug>BuffetSwitch(2)
 nmap <leader>3 <Plug>BuffetSwitch(3)
@@ -450,4 +455,12 @@ nmap <leader>7 <Plug>BuffetSwitch(7)
 nmap <leader>8 <Plug>BuffetSwitch(8)
 nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
+
+" use ctrl+h/j/k/l switch window
+noremap <C-h> <C-w>h
+
+nmap - <Plug>(choosewin)
+nmap <Space> :Leaderf file<CR>
+" if you want to use overlay feature
+let g:choosewin_overlay_enable = 1
 
