@@ -14,7 +14,7 @@ Plug 'jiftle/vim-jiftle-plugins-sets'
 Plug 'jiftle/vim-jiftle-bushound-syntax'
 
 " Markdown博客预览插件
-Plug 'jiftle/vim-jiftle-gitmdblog'
+" Plug 'jiftle/vim-jiftle-gitmdblog'
 
 " ==================== vim功能增强 ========================
 " 中文帮助
@@ -34,7 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 " Buffer切换插件，类似IDE的标签页 --亚美尼亚，🇦🇲
 Plug 'bagrat/vim-buffet'
-" 分割窗口切换  --日本🇯
+" 分割窗口切换  --日本 🇯
 Plug 't9md/vim-choosewin'
 
 " ------------- 文件修改历史 ------------
@@ -164,14 +164,18 @@ call plug#end()
 
 " -------------------- tagbar ---------------
 " 设置tagbar的窗口宽度
-let g:tagbar_width=30
+let g:tagbar_width=50
 
 function! CompileAndRun_TypeScript()
     " 保存文件
   execute "w"
+  echo "step1: 保存文件"
   execute "silent ! rm %:p:r.js"
+  echo "step2: 删除临时文件"
   execute "silent ! tsc %:p"
+  echo "step3: 编译"
   execute "silent ! node %:p:r.js 2>&1 | tee ~/.vim/tmp/compile_run_tmp.out"
+  echo "step4: 运行"
   execute "split ~/.vim/tmp/compile_run_tmp.out"
 endfunction
 
@@ -429,13 +433,6 @@ if has('mac')
  
 endif
 
-" ------------- 编译并执行当前文件
-
-set bg=light
-" set bg=dark
-colo space_vim_theme
-" colo gruvbox
-
 " -------------------- Buffer切换插件 'bagrat/vim-buffet' ----------------
 " colo default
 noremap <Tab> :bn<CR>
@@ -452,3 +449,7 @@ let g:choosewin_overlay_enable = 1
 " 空格键，文件搜索
 nmap <Space> :Leaderf file<CR>
 
+" set bg=light
+set bg=dark
+colo space_vim_theme
+" colo gruvbox
