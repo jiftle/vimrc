@@ -30,6 +30,12 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/mru.vim'
 " Bottom : 好看的状态栏
 Plug 'vim-airline/vim-airline'
+" 启动画面  --德国，🇩🇪
+Plug 'mhinz/vim-startify'
+" Buffer切换插件，类似IDE的标签页 --亚美尼亚，🇦🇲
+Plug 'bagrat/vim-buffet'
+" 分割窗口切换  --日本🇯
+Plug 't9md/vim-choosewin'
 
 " ------------- 文件修改历史 ------------
 "  打开文件时，停留在上次编辑的位置
@@ -129,11 +135,6 @@ Plug 'wakatime/vim-wakatime'
 " 类似Emacs的老板键，不好用
 " Plug 'liuchengxu/vim-which-key'
 " Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'mhinz/vim-startify'
-" Buffer切换插件，类似IDE的标签页
-Plug 'bagrat/vim-buffet'
-
-Plug 't9md/vim-choosewin'
 
 " Plug 'godlygeek/tabular'
 " 
@@ -164,10 +165,19 @@ call plug#end()
 " -------------------- tagbar ---------------
 " 设置tagbar的窗口宽度
 let g:tagbar_width=30
-"
+
+function! CompileAndRun_TypeScript()
+    " 保存文件
+  execute "w"
+  execute "silent ! rm %:p:r.js"
+  execute "silent ! tsc %:p"
+  execute "silent ! node %:p:r.js 2>&1 | tee ~/.vim/tmp/compile_run_tmp.out"
+  execute "split ~/.vim/tmp/compile_run_tmp.out"
+endfunction
+
 " ----------------- 编译 ---------------
 " 编译
-func! CompileRunGcc()
+func! CompileAndRun()
     exec "w"
     "exec "!clear"
 	if &filetype == 'c'
@@ -196,7 +206,7 @@ func! CompileRunGcc()
         exec "!~/.vim/markdown.pl % > %.html &"
         exec "!firefox %.html &"
 	elseif &filetype == 'typescript'
-		exec "!tsc %"
+		:call CompileAndRun_TypeScript()
 	endif
 endfunc
 
@@ -394,13 +404,13 @@ map <F3> :TagbarToggle<CR>
 " 文件管理器
 map <F4> :NERDTreeToggle<CR>
 " 编译并运行
-map <F5> :call CompileRunGcc()<CR>
+map <F5> :call CompileAndRun()<CR>
 " 最近打开文件列表
 map <F6> :MRU<CR>
 " Markdown 预览
 map <F7> :MarkdownPreview<CR>
+map q :q<CR>
 
-map <F7> :MarkdownPreview<CR>
 
 
 if has('mac')
@@ -420,21 +430,9 @@ if has('mac')
 endif
 
 " ------------- 编译并执行当前文件
-function! Setup_ExecNDisplay()
-    " 保存文件
-  execute "w"
-  execute "silent ! rm %:p:r.js"
-  execute "silent ! tsc %:p"
-  execute "silent ! node %:p:r.js 2>&1 | tee tmp.out"
-  execute "split tmp.out"
-  " execute "redraw!"
-  " set autoread
-endfunction
 
-:nmap <F8> :call Setup_ExecNDisplay()<CR>
-
-" set bg=light
-set bg=dark
+set bg=light
+" set bg=dark
 colo space_vim_theme
 " colo gruvbox
 
@@ -445,22 +443,12 @@ noremap <S-Tab> :bp<CR>
 
 " 前缀键
 let g:mapleader = ","
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
 
-" use ctrl+h/j/k/l switch window
-noremap <C-h> <C-w>h
-
+" - 选择窗口
 nmap - <Plug>(choosewin)
-nmap <Space> :Leaderf file<CR>
-" if you want to use overlay feature
+" if you want to use overlay feature 浮动窗口
 let g:choosewin_overlay_enable = 1
+
+" 空格键，文件搜索
+nmap <Space> :Leaderf file<CR>
 
