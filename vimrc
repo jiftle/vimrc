@@ -168,15 +168,18 @@ let g:tagbar_width=50
 
 function! CompileAndRun_TypeScript()
     " 保存文件
-  execute "w"
   echo "step1: 保存文件"
-  execute "silent ! rm %:p:r.js"
-  echo "step2: 删除临时文件"
-  execute "silent ! tsc %:p"
-  echo "step3: 编译"
-  execute "silent ! node %:p:r.js 2>&1 | tee ~/.vim/tmp/compile_run_tmp.out"
+  execute "w"
+  execute "silent ! nohup ts-node %:p 2>&1 | tee ~/.vim/tmp/compile_run_tmp.out"
+
+  "execute "silent ! rm %:p:r.js"
+  "echo "step2: 删除临时文件"
+  "execute "silent ! tsc %:p"
+  "echo "step3: 编译"
+  "execute "silent ! node %:p:r.js 2>&1 | tee ~/.vim/tmp/compile_run_tmp.out"
   echo "step4: 运行"
   execute "split ~/.vim/tmp/compile_run_tmp.out"
+  :redraw!
 endfunction
 
 " ----------------- 编译 ---------------
