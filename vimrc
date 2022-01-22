@@ -1,5 +1,5 @@
 " gvim或MacVim字体设置
-set guifont=DroidSansMono\ Nerd\ Font\ Mono\ 10
+" set guifont=DroidSansMono\ Nerd\ Font\ Mono\ 10
 
 " -------------------- 插件声明 ------------
 call plug#begin('~/.vim/plugged')
@@ -55,27 +55,14 @@ Plug 'ryanoasis/vim-devicons'
 " 全局搜索某个单词，ubuntu需要在机器上安装`apt-get install ack-grep
 Plug 'mileszs/ack.vim'
 
-" ------------- 全局搜索 :Leaderf file --------------
-" ----------- deepin V20 ，linux下，运行插件报错，禁用 -------------
-" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-if has('mac')
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-    " popup mode
-    let g:Lf_WindowPosition = 'popup'
-else
-    if has('nvim')
-        " Plug 'https://hub.fastgit.org/Yggdroot/LeaderF.git', { 'do': './install.sh' }
-        Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-        " popup mode
-        let g:Lf_WindowPosition = 'popup'
-    endif
-endif
 
 " ==================== 主题配色 ====================
 Plug 'morhetz/gruvbox'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'iCyMind/NeoSolarized'
 Plug 'joshdick/onedark.vim'
+Plug 'srcery-colors/srcery-vim'
+Plug 'olimorris/onedarkpro.nvim'
 
 " ----------------- git插件，状态栏显示状态，快捷提交 -------------------------
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -90,9 +77,9 @@ Plug 'scrooloose/nerdcommenter'
 " 支持代码片段功能, coc.nvim 功能更强，所以注释
 " 如果coc.nvim，可以使用该插件
 "Plug 'SirVer/ultisnips'
-" " 常用的代码片段
+" 常用的代码片段
 Plug 'honza/vim-snippets'
-" " 自定义片段插件，解决键位YCM冲突
+" 自定义片段插件，解决键位YCM冲突
 Plug 'jiftle/vim-jiftle-snippets'
 
 
@@ -107,7 +94,7 @@ Plug 'leafgarland/typescript-vim'
 
 " ------------- Emacs的Org-Mode，一种生活方式 -------------
 " vim-orgmode的依赖，<C-A>/<C-X>增加减少日期
-Plug 'tpope/vim-speeddating'
+" Plug 'tpope/vim-speeddating'
 " " 缩窄到可视区域
 " Plug 'chrisbra/NrrwRgn'
 " Plug 'jceb/vim-orgmode'
@@ -419,22 +406,21 @@ map <F7> :MarkdownPreview<CR>
 map q :q<CR>
 
 
-
-if has('mac')
-    if has('nvim')
-        colorscheme space_vim_theme
-        set bg=light
-    else
-        set termguicolors
-        if &term =~# '^screen'
-            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-        endif
-        colorscheme space_vim_theme
-        set bg=light
-    endif
+"if has('mac')
+    "if has('nvim')
+        "colorscheme space_vim_theme
+        "set bg=light
+    "else
+        "set termguicolors
+        "if &term =~# '^screen'
+            "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+            "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        "endif
+        "colorscheme space_vim_theme
+        "set bg=light
+    "endif
  
-endif
+"endif
 
 " -------------------- Buffer切换插件 'bagrat/vim-buffet' ----------------
 " colo default
@@ -453,6 +439,10 @@ let g:choosewin_overlay_enable = 1
 nmap <Space> :Leaderf file<CR>
 
 " set bg=light
-set bg=dark
-colo space_vim_theme
+" set bg=dark
+" colo space_vim_theme
 " colo gruvbox
+" colo default
+
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set termguicolors
